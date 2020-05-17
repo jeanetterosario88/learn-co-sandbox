@@ -1,4 +1,4 @@
-require "brdwy4brkppl/version"
+require_relative "./brdwy4brkppl/version"
 
 class Show
   
