@@ -6,35 +6,22 @@ class Show
   
   @@all = []
   
-  def initialize(name, discount)
-    @name = name
-    @discount = discount
-end
-  
-  def name
-    @name
-  end
-  
-  def discount
-    @discount
+ def initialize(show_hash)
+    #@name = show_hash[:name]
+    self.send("name=", show_hash[:name])
+    #@discount = show_hash[:location]
+    self.send("discount=", show_hash[:discount])
+    @@all << self
   end
 
-  def save
-    @@all << self
+  def self.create_from_collection(show_array)
+    show_array.each do |show_hash| #each show is a hash
+      Show.new(show_hash)
+    end
   end
   
   def self.all
     @@all
   end
-  
-  def self.destroy_all
-    @@all.clear
-  end
-  
-  def self.create(name)
-    newshow = Show.new(name)
-    newshow.save
-    newsong
-  end
-  
+
 end

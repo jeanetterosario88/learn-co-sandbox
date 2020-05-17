@@ -5,23 +5,23 @@ require 'pry'
 
 class BrdwayCLI
 
-class InputError < StandardError
+   class InputError < StandardError
         def message
           puts ”please provide a valid entry”
         end
       end
     end
 
-def run
-    make_shows
-    call_it
- end
+    def run
+        make_shows
+        call_it
+     end
 
-def make_shows
-    #shows_array will return the scraped/parsed index page of all shows
-    #it returns the nokogiri object(array thing)
+  def make_shows
+    #shows_array will return the scraped/parsed page of all shows
+    #it returns the nokogiri object(array)
     shows_array = Scraper.scrape_mainpage
-    #this creates the student instances with the following attributes: :name, :location, :profile_url
+    #this creates the student instances with the following attributes: :name :discount
     Show.create_from_collection(show_array)
   end
 
