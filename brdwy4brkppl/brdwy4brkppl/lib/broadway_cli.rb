@@ -1,7 +1,7 @@
 require_relative "../lib/scraper.rb"
 require_relative "../lib/show.rb"
 require 'nokogiri'
-require 'colorize'
+require 'pry'
 
 class BrdwayCLI
 
@@ -52,7 +52,6 @@ def make_shows
   end
     
 
-
   def list_shows
     sorted = Show.all.sort_by {|show|show.name}
     sorted.each.with_index do |show, index|
@@ -60,7 +59,6 @@ def make_shows
       puts "#{newnum}. #{show.name}"
     end
   end
-  
 
   def print_discount
     puts "Which show would you like to see? Type its corresponding number.”

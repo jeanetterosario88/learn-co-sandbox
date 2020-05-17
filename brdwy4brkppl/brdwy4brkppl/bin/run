@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative './brdwy4brkppl/brdwy4brkppl/lib/broadway_cli.rb"
+
+BrdwayCLI.new.run

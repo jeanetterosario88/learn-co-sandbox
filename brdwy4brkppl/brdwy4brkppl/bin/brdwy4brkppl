@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require './brdwy4brkppl/brdwy4brkppl/lib/environment"
-
-Show::BrdwyCLI.new.run
