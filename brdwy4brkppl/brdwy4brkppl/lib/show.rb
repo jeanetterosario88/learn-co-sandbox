@@ -9,7 +9,7 @@ class Show
  def initialize(show_hash)
     #@name = show_hash[:name]
     self.send("name=", show_hash[:name])
-    #@discount = show_hash[:location]
+    #@discount = show_hash[:discount]
     self.send("discount=", show_hash[:discount])
     @@all << self
   end

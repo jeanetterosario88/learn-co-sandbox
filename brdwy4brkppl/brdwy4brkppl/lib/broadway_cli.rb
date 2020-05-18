@@ -4,26 +4,19 @@ require 'nokogiri'
 require 'pry'
 
 class BrdwayCLI
-
-   class InputError < StandardError
-        def message
-          puts ”please provide a valid entry”
-        end
-      end
-    end
-
+    
     def run
         make_shows
         call_it
      end
 
-  def make_shows
-    #shows_array will return the scraped/parsed page of all shows
-    #it returns the nokogiri object(array)
-    shows_array = Scraper.scrape_mainpage
-    #this creates the student instances with the following attributes: :name :discount
-    Show.create_from_collection(show_array)
-  end
+    def make_shows
+      #shows_array will return the scraped/parsed page of all shows
+      #it returns the nokogiri object(array)
+      shows_array = Scraper.scrape_mainpage
+      #this creates the student instances with the following attributes: :name :discount
+      Show.create_from_collection(show_array)
+    end
 
 
   def call_it
@@ -41,33 +34,26 @@ class BrdwayCLI
         list_shows
       when “discount”
         print_discount
-      when input != (“all shows” || “discount” || “exit”)
-          begin
-            raise InputError
-          rescue InputError => error
-              puts error.message
-          end
       end
     end
   end
-    
 
-  def list_shows
-    sorted = Show.all.sort_by {|show|show.name}
-    sorted.each.with_index do |show, index|
-      newnum = index + 1
-      puts "#{newnum}. #{show.name}"
+    def list_shows
+      sorted = Show.all.sort_by {|show|show.name}
+      sorted.each.with_index do |show, index|
+        newnum = index + 1
+        puts "#{newnum}. #{show.name}"
+      end
     end
-  end
-
-  def print_discount
-    puts "Which show would you like to see? Type its corresponding number.”
-    list_of_shows = Show.all.sort{ |a, b| a.name <=> b.name }
-    input = gets.strip.to_i
-    if (1..Show.all.length).include?(input)
-      show = list_of_shows[input-1]
-      puts "#{show.name} discounts: #{show.discount}”
+  
+    def print_discount
+      puts "Which show would you like to see? Type its corresponding number.”
+      list_of_shows = Show.all.sort{ |a, b| a.name <=> b.name }
+      input = gets.strip.to_i
+      if (1..Show.all.length).include?(input)
+        show = list_of_shows[input-1]
+        puts "#{show.name} discounts: #{show.discount}”
+      end
     end
-  end
 
 end
